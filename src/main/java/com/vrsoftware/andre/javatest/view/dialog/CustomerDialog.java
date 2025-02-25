@@ -208,10 +208,6 @@ public class CustomerDialog extends JDialog {
     }
 
     private void onCancel() {
-        // Reset fields
-        textFielName.setText("");
-        textFieldPurchaseLimit.setText("");
-        textFieldInvoiceCloseDate.setText("");
         this.setVisible(false);
         this.dispose();
     }

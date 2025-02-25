@@ -2,7 +2,7 @@ package com.vrsoftware.andre.javatest.view;
 
 import com.vrsoftware.andre.javatest.view.dialog.CustomerMainDialog;
 import com.vrsoftware.andre.javatest.view.dialog.ProductMainDialog;
-import com.vrsoftware.andre.javatest.view.dialog.SaleMainDialog;
+import com.vrsoftware.andre.javatest.view.dialog.SalesMainDialog;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -60,7 +60,7 @@ public class MainView extends JFrame {
     }
 
     private void onSale(ActionEvent event) {
-        SaleMainDialog saleMainDialog = new SaleMainDialog();
+        SalesMainDialog saleMainDialog = new SalesMainDialog();
         saleMainDialog.pack();
         saleMainDialog.setLocationRelativeTo(null);
         saleMainDialog.setVisible(true);

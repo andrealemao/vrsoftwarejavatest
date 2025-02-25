@@ -17,6 +17,7 @@ public class ProductDialog extends JDialog {
     private JButton buttonCancel;
     private JTextArea textAreaDescription;
     private JTextField textFieldPrice;
+    private JTextField textFieldProductName;
 
     private ProductDAO productDAO = new ProductDAO();
     private ProductMainDialog mainDialog;
@@ -34,8 +35,7 @@ public class ProductDialog extends JDialog {
         buttonOK.setText("Salvar");
     }
 
-    public ProductDialog(ProductMainDialog parent, boolean modal, String title, Product prod)
-            throws ParseException {
+    public ProductDialog(ProductMainDialog parent, boolean modal, String title, Product prod) {
         super(parent, modal);
         mainDialog = parent;
 
@@ -99,6 +99,7 @@ public class ProductDialog extends JDialog {
     private void productIsUpdated() {
         Product prod = new Product(
                 product.getId(),
+                product.getName(),
                 textAreaDescription.getText(),
                 Double.valueOf(textFieldPrice.getText())
         );
@@ -179,14 +180,12 @@ public class ProductDialog extends JDialog {
     }
 
     private void setProductFields() throws ParseException {
+        product.setName(textFieldProductName.getText());
         product.setDescription(textAreaDescription.getText());
         product.setPrice(Double.valueOf(textFieldPrice.getText()));
     }
 
     private void onCancel() {
-        // Reset fields
-        textAreaDescription.setText("");
-        textFieldPrice.setText("");
         this.setVisible(false);
         this.dispose();
     }

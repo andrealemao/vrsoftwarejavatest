@@ -43,10 +43,9 @@ public class ProductMainDialog extends JDialog implements MouseListener {
         tableModel = new DefaultTableModel();
 
         tableModel.addColumn("CÓDIGO");
+        tableModel.addColumn("NOME");
         tableModel.addColumn("DESCRIÇÃO");
         tableModel.addColumn("PREÇO");
-
-//        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(tableModel);
 
         JTableHeader header = productTable.getTableHeader();
         header.setFont(new Font("Courier New", Font.BOLD, 14));
@@ -55,20 +54,6 @@ public class ProductMainDialog extends JDialog implements MouseListener {
 
         productTable.setModel(tableModel);
         productTable.setRowHeight(30);
-//        customerTable.setRowSorter(sorter);
-//        sorter.setComparator(1, new Comparator<String>() {
-//            @Override
-//            public int compare(String s1, String s2) {
-//                try {
-//                    long long1 = Long.parseLong(s1);
-//                    long long2 = Long.parseLong(s2);
-//                    return Long.compare(long1, long2);
-//                } catch (NumberFormatException e) {
-//                    // Handle cases where the string is not a valid long
-//                    return s1.compareTo(s2); // Fallback to string comparison
-//                }
-//            }
-//        });
         productTable.setFont(new Font("Courier New", Font.PLAIN, 14));
         productTable.addMouseListener(this);
     }
@@ -76,36 +61,24 @@ public class ProductMainDialog extends JDialog implements MouseListener {
     private void addButtonListeners() {
         buttonNew.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                try {
-                    onNew();
-                } catch (ParseException ex) {
-                    ex.printStackTrace();
-                }
+                onNew();
             }
         });
 
         buttonUpdate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                try {
-                    onUpdate();
-                } catch (ParseException ex) {
-                    ex.printStackTrace();
-                }
+                onUpdate();
             }
         });
 
         buttonDelete.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                try {
-                    onDelete();
-                } catch (ParseException ex) {
-                    ex.printStackTrace();
-                }
+                onDelete();
             }
         });
     }
 
-    private void onNew() throws ParseException {
+    private void onNew() {
         String title = "Novo produto";
         ProductDialog productDialog = new ProductDialog(this, true, title);
         productDialog.pack();
@@ -116,7 +89,7 @@ public class ProductMainDialog extends JDialog implements MouseListener {
         buttonDelete.setEnabled(false);
     }
 
-    private void onUpdate() throws ParseException {
+    private void onUpdate() {
         String title = "Alterar produto";
         ProductDialog productDialog = new ProductDialog(this, true, title, product);
         productDialog.pack();
@@ -127,7 +100,7 @@ public class ProductMainDialog extends JDialog implements MouseListener {
         buttonDelete.setEnabled(false);
     }
 
-    private void onDelete() throws ParseException {
+    private void onDelete() {
         String title = "Excluir produto";
         ProductDialog productDialog = new ProductDialog(this, true, title, product);
         productDialog.pack();
@@ -167,10 +140,11 @@ public class ProductMainDialog extends JDialog implements MouseListener {
 
                     if (row != -1) {
                         Long id = Long.parseLong(productTable.getValueAt(row, 0).toString());
-                        String description = productTable.getValueAt(row, 1).toString();
-                        Double price = Double.valueOf(productTable.getValueAt(row, 2).toString());
+                        String name = productTable.getValueAt(row, 1).toString();
+                        String description = productTable.getValueAt(row, 2).toString();
+                        Double price = Double.valueOf(productTable.getValueAt(row, 3).toString());
 
-                        product = new Product(id, description, price);
+                        product = new Product(id, name, description, price);
                     }
                 }
             }
