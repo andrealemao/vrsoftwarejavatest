@@ -10,6 +10,6 @@ import java.util.List;
 public interface SaleRepository extends JpaRepository<Sale, Long> {
 
 
-    List<Sale> findGroupByCustomer(Long id);
-    List<Sale> findGroupByProduct(Long id);
+//    List<Sale> findGroupByCustomer(Long id);
+//    List<Sale> findGroupByProduct(Long id);
 }
